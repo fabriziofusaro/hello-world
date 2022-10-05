@@ -33,7 +33,7 @@ pipeline {
                      docker build -t hello-world-afip:latest . "
             }
          }
-          stage('Hello world docker run') {
+         stage('Hello world docker run') {
             steps {
                 script {
                     def set_container = sh(script: ''' CONTAINER_NAME="hello-world-test"
@@ -45,11 +45,12 @@ pipeline {
                                             ''')
                 }
             }
-            stage('Hello world jmeter') {
-                        steps {
-                            sh "jmeter -JUSER=100 -Jjmeter.save.saveservice.output_format=xml -Jjmeter.save.saveservice.response_data.on_error=true -n -t jmeter_test_plan.jmx  -l testresult.jlt"
-                        }
-             }
-          }
+         }
+         stage('Hello world jmeter') {
+                steps {
+                    sh "jmeter -JUSER=100 -Jjmeter.save.saveservice.output_format=xml -Jjmeter.save.saveservice.response_data.on_error=true -n -t jmeter_test_plan.jmx  -l testresult.jlt"
+                }
+         }
+
     }
 }
